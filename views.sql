@@ -1,6 +1,6 @@
 USE Pizzaria;
 
--- View 1: pedidos com o nome do cliente
+-- 1: pedidos com o nome do cliente
 DROP VIEW IF EXISTS vw_pedidos1;
 
 CREATE VIEW vw_pedidos1 AS
@@ -18,7 +18,7 @@ INNER JOIN Clientes c ON p.cliente_id = c.cliente_id;
 SELECT * FROM vw_pedidos1;
 
 
--- View 2: detalhes dos pedidos, clientes e pizzas
+-- 2: detalhes dos pedidos, clientes e pizzas
 DROP VIEW IF EXISTS vw_pedidos_itens;
 
 CREATE VIEW vw_pedidos_itens AS
@@ -33,12 +33,10 @@ FROM Pedidos p
 INNER JOIN Clientes c ON p.cliente_id = c.cliente_id
 INNER JOIN Itens_Pedido ip ON p.pedido_id = ip.pedido_id
 INNER JOIN Pizzas pi ON ip.pizza_id = pi.pizza_id;
-
 -- Consultar os detalhes dos pedidos
 SELECT * FROM vw_pedidos_itens;
 
-
--- View 3: valor total de cada pedido
+-- 3: valor total de cada pedido
 DROP VIEW IF EXISTS vw_total_pedidos;
 
 CREATE VIEW vw_total_pedidos AS
@@ -50,12 +48,9 @@ FROM Pedidos p
 INNER JOIN Clientes c ON p.cliente_id = c.cliente_id
 INNER JOIN Itens_Pedido ip ON p.pedido_id = ip.pedido_id
 GROUP BY p.pedido_id, c.nome;
-
 -- Consultar o total de cada pedido
 SELECT * FROM vw_total_pedidos;
-
-
--- View 4: quantidade de pizzas por pedido
+-- 4: quantidade de pizzas por pedido
 DROP VIEW IF EXISTS vw_quantidade_pizzas;
 
 CREATE VIEW vw_quantidade_pizzas AS
@@ -67,6 +62,5 @@ FROM Pedidos p
 INNER JOIN Clientes c ON p.cliente_id = c.cliente_id
 INNER JOIN Itens_Pedido ip ON p.pedido_id = ip.pedido_id
 GROUP BY p.pedido_id, c.nome;
-
 -- Consultar a quantidade de pizzas por pedido
 SELECT * FROM vw_quantidade_pizzas;
